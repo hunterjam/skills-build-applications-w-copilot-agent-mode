@@ -4,7 +4,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'octofit-secret-key'
 DEBUG = True
-ALLOWED_HOSTS = ['*']
+
+CODESPACE_NAME = os.environ.get('CODESPACE_NAME', '')
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    f'{CODESPACE_NAME}-8000.app.github.dev',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    f'https://{CODESPACE_NAME}-8000.app.github.dev',
+]
 
 INSTALLED_APPS = [
     'octofit_tracker',
