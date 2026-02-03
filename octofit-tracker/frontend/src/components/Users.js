@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import API_URL from '../utils/api';
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -6,8 +7,7 @@ function Users() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-    fetch(`${apiUrl}/api/users/`)
+    fetch(`${API_URL}/api/users/`)
       .then(response => {
         if (!response.ok) throw new Error('Failed to fetch users');
         return response.json();

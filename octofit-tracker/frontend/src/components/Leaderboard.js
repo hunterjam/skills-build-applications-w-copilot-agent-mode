@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import API_URL from '../utils/api';
 
 function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
@@ -6,8 +7,7 @@ function Leaderboard() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-    fetch(`${apiUrl}/api/leaderboard/`)
+    fetch(`${API_URL}/api/leaderboard/`)
       .then(response => {
         if (!response.ok) throw new Error('Failed to fetch leaderboard');
         return response.json();

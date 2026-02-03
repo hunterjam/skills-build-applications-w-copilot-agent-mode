@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import API_URL from '../utils/api';
 
 function Workouts() {
   const [workouts, setWorkouts] = useState([]);
@@ -6,8 +7,7 @@ function Workouts() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-    fetch(`${apiUrl}/api/workouts/`)
+    fetch(`${API_URL}/api/workouts/`)
       .then(response => {
         if (!response.ok) throw new Error('Failed to fetch workouts');
         return response.json();

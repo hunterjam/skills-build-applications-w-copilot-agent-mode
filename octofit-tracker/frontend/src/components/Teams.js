@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import API_URL from '../utils/api';
 
 function Teams() {
   const [teams, setTeams] = useState([]);
@@ -6,8 +7,7 @@ function Teams() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-    fetch(`${apiUrl}/api/teams/`)
+    fetch(`${API_URL}/api/teams/`)
       .then(response => {
         if (!response.ok) throw new Error('Failed to fetch teams');
         return response.json();
