@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import API_URL from '../utils/api';
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -7,7 +6,9 @@ function Users() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${API_URL}/api/users/`)
+    const apiUrl = `https://${window.location.hostname.replace('-3000.', '-8000.')}`;
+    // Codespace URL format: https://CODESPACE_NAME-8000.app.github.dev/api/users/
+    fetch(`${apiUrl}/api/users/`)
       .then(response => {
         if (!response.ok) throw new Error('Failed to fetch users');
         return response.json();
